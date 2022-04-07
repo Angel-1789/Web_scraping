@@ -1,17 +1,18 @@
 import json
 # import os, datetime
+PATH_FILE = "../files_web_scraping/"
 
 #   ------------------------------------------------------------------------------------------------------     CATEGORIE
 def carica(nome_dic):
     # print("FILE CARICA")
-    with open("./file/"+nome_dic.lower()+".json") as f:
+    with open(PATH_FILE+nome_dic.lower()+".json") as f:
         dic = json.loads(f.read())
     # print("FINE FILE CARICA")
     return dic
 
 def salva(dic,nome_dic):
     # print("\nFILE SALVA")
-    with open("./file/"+nome_dic.lower()+".json","w") as f:
+    with open(PATH_FILE+nome_dic.lower()+".json","w") as f:
         f.write(json.dumps(dic))
     # print("FINE FILE SALVA")
 
