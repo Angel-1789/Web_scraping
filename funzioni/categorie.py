@@ -8,9 +8,9 @@ def trova_ultima_categoria(origin, key, origin_negozi):
     ult_cat = temp[0]
     ult_sott_cat = temp[1]
     
-    print(len(origin))
-    print(ult_cat)
-    print(ult_sott_cat)
+    # print(len(origin))
+    # print(ult_cat)
+    # print(ult_sott_cat)
     for sottocategoria in origin[ult_cat]:
         print(sottocategoria)
     keys = origin.keys()
@@ -42,7 +42,7 @@ def trova_ultima_categoria(origin, key, origin_negozi):
     for categoria in origin:
         if index > categoria_cercata:
             copy[categoria] = origin[categoria]
-            print("\nCategoria: ",categoria,"\n\t\t",origin[categoria])
+            # print("\nCategoria: ",categoria,"\n\t\t",origin[categoria])
         index +=1
 
     return copy

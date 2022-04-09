@@ -59,9 +59,12 @@ def estrai_aziende(LINK, PRE_LINK_ANNUNCIO, sec, sec_pausa_errore,tentativi):
                         soup = vai_a_page(next_page,sec_pausa_errore)
                         pages = soup.find('div',class_='styles_categoryBusinessBody__3fm2a').find('nav').find_all('a')
                         n_page = int(soup.find('div',class_='styles_categoryBusinessBody__3fm2a').find('nav').find('a',class_='link_internal__YpiJI link_disabled__2Q9Ub button_button__3sN8k button_medium__252Ld button_primary__2eJ8_ link_button__13BH6 pagination-link_current__2H33l pagination-link_item__1wvr8').get_text())
-                        div_aziende = soup.find('div', class_ = 'styles_businessUnitCardsContainer__1ggaO').find_all('div',class_='paper_paper__29o4A card_card__2F_07 card_noPadding__1tkWv styles_wrapper__2QC-c styles_businessUnitCard__1-z5m')
+                        div_aziende = soup.find('div', class_ = 'styles_businessUnitCardsContainer__1ggaO')
+                        print("FOR: ",div_aziende)
 
-                        aziende = estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, next_page,n_page,n_pages)
+                        if div_aziende is not None:
+                          div_aziende = div_aziende.find_all('div',class_='paper_paper__29o4A card_card__2F_07 card_noPadding__1tkWv styles_wrapper__2QC-c styles_businessUnitCard__1-z5m')
+                          aziende = estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, next_page,n_page,n_pages)
 
                         next_page = PRE_LINK_ANNUNCIO+str(pages[len(pages)-1].get('href'))
                         if(page%10==0):
@@ -73,7 +76,7 @@ def estrai_aziende(LINK, PRE_LINK_ANNUNCIO, sec, sec_pausa_errore,tentativi):
                     aziende = estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, LINK,1,1)
                 return [aziende,(count-1)]
         except Exception as e:
-            print("errore durante il download dei negozi: %s.\n\tSi riprovera il download della pagina tra %s secondi.\t%s %s "%(e,sec_pausa_errore,str(no_problem),str(count)),end='')
+            print("errore durante il download dei negozi [ESTRAI AZIENDE 23]: %s.\n\tSi riprovera il download della pagina tra %s secondi.\t%s %s "%(e,sec_pausa_errore,str(no_problem),str(count)),end='')
             time.sleep(sec_pausa_errore)
             print("\tFine pausa")
             count+=1
