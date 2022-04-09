@@ -6,7 +6,7 @@ from funzioni.vai_a_page import vai_a_page
 def trova_ultima_categoria(origin, key, origin_negozi):
     temp = key.split(";")
     ult_cat = temp[0]
-    ult_sott_cat = temp[1]
+    ult_sott_cat = temp[1] 
     
     # print(len(origin))
     # print(ult_cat)

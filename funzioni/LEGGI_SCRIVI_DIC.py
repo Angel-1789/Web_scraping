@@ -3,7 +3,7 @@ import json
 PATH_FILE = "../files_web_scraping/"
 
 #   ------------------------------------------------------------------------------------------------------     CATEGORIE
-def carica(nome_dic):
+def carica(nome_dic): 
     # print("FILE CARICA")
     with open(PATH_FILE+nome_dic.lower()+".json") as f:
         dic = json.loads(f.read())
