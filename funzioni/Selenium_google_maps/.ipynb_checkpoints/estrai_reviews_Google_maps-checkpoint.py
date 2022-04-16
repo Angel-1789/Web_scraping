@@ -67,7 +67,7 @@ def componi_key(driver):
     except:
         print("errore durante click visualizzazioni reviews")
 
-    return str(nome)+";"+str(address)+";"+str(n_reviews)
+    return [str(nome)+";"+str(address),str(n_reviews)]
 
 def estrai_review(driver):
     s = driver.find_elements_by_xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "gXqMYb-hSRGPd", " " ))]')

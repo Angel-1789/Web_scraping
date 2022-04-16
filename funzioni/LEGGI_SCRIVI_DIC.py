@@ -9,6 +9,12 @@ def carica(nome_dic):
         dic = json.loads(f.read())
     return dic
 
+def carica_v2(nome_dic,path):
+    print(nome_dic, end ='')
+    with open(path+nome_dic.lower()+".json") as f:
+        dic = json.loads(f.read())
+    return dic
+
 def salva(dic,nome_dic):
     with open(PATH_FILE+nome_dic.lower()+".json","w") as f:
         f.write(json.dumps(dic))
@@ -17,6 +23,14 @@ def salva_dic(dic, nome):
     print("\n\tpreparo file per il salvataggio del file:  %s   ......   "%(nome),end='')
     salva(dic,nome)
     print("\tfile salvato")
+    
+# -------------------------------------------------------------------------------------
+def salva_v2(obj, nome,path):
+    print("\n\tpreparo file per il salvataggio del file:  %s   ......   "%(nome),end='')
+    with open(path+nome.lower()+".json","w") as f:
+        f.write(json.dumps(obj))
+    print("\tfile salvato")
+    
 
 #   ------------------------------------------------------------------------------------------------------  NEGOZI
 # def salva(dic,nome_dic):

@@ -92,14 +92,15 @@ for link in temp_link_negozi:
     
     driver = store_pages(link, driver)        
     driver.switch_to.window(driver.window_handles[1])
-    chiave_review = componi_key(driver)
+    key = componi_key(driver)
+    chiave_review = key[0]
     print("key : ",chiave_review)
     if chiave_review not in reviews_google_maps:
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[contains(concat( " ", @class, " " ), concat( " ", "Yr7JMd-pane-hSRGPd", " " ))]'))).click()
 
         print("\n",link)
         ### ----------------------------------------  visualizza tutte le review disponibili
-        celle_reviews = scorri_reviews(driver, int((chiave_review.split(";"))[2]), TENTATIVI)
+        celle_reviews = scorri_reviews(driver, int((chiave_review.split(";"))[1]), TENTATIVI)
         ## ----------------------------------------  click more nelle review
         estrai_review(driver)
         ### ----------------------------------------  leggo le review
@@ -113,7 +114,7 @@ for link in temp_link_negozi:
         print("\t dim diz: %s\t%s\n"%(len(reviews_google_maps), type(reviews_google_maps)))
         salva_dic(link,"ULTIMO_NEG_REVIEWS")
         salva_dic(reviews_google_maps, "reviews_KFC_google_maps")
-        if len(celle_reviews) != int((chiave_review.split(";"))[2]):
+        if len(celle_reviews) != int(key[1]):
             print("\nCi sono stati degli errori durante il caricamento delle Reviews!! per il negozio",chiave_review," salviamo una copia della chiave con il link nel dizionario dei negozi con errori")
             negozi_andati_in_errore[chiave_review] = link
             salva_dic(negozi_andati_in_errore, "reviews_KFC_google_maps_negozi_andati_in_errore")
