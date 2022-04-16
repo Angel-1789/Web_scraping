@@ -4,7 +4,7 @@ import webbrowser # ci da la possibilità di aprire automaticamente il sito web 
 from funzioni.vai_a_page import vai_a_page
 
 def trova_ultima_categoria(origin, key, origin_negozi):
-    temp = key.split(";")
+    temp = key.split(";") 
     ult_cat = temp[0]
     ult_sott_cat = temp[1] 
     

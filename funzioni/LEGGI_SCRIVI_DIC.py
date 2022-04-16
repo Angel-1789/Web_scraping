@@ -3,21 +3,18 @@ import json
 PATH_FILE = "../files_web_scraping/"
 
 #   ------------------------------------------------------------------------------------------------------     CATEGORIE
-def carica(nome_dic): 
-    # print("FILE CARICA")
+def carica(nome_dic):
+    print(nome_dic, end ='')
     with open(PATH_FILE+nome_dic.lower()+".json") as f:
         dic = json.loads(f.read())
-    # print("FINE FILE CARICA")
     return dic
 
 def salva(dic,nome_dic):
-    # print("\nFILE SALVA")
     with open(PATH_FILE+nome_dic.lower()+".json","w") as f:
         f.write(json.dumps(dic))
-    # print("FINE FILE SALVA")
 
 def salva_dic(dic, nome):
-    print("\n\tpreparo file per il salvataggio del dizionario %s   ......   "%(nome),end='')
+    print("\n\tpreparo file per il salvataggio del file:  %s   ......   "%(nome),end='')
     salva(dic,nome)
     print("\tfile salvato")
 
