@@ -49,7 +49,7 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
                 temp = estrai_dati(div_reviews, reviews["contenuto"],PRE_LINK_ANNUNCIO)
                 reviews["contenuto"] = temp[0]
                 reviews["modifiche"] = [LINK,1,n_pages]
-                salva_v2(("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
+                salva_v2(reviews, ("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
                 print("   |  trovate: %2s reviews | %14s reviews | %s"%(str(temp[1]),(str(len(reviews))+" / "+str(tot_reviews)),LINK))
 
                 for page in range((last_page+1), (n_pages+1)):
@@ -60,7 +60,7 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
                     temp = estrai_dati(div_reviews, reviews["contenuto"],PRE_LINK_ANNUNCIO)
                     reviews["contenuto"] = temp[0]
                     reviews["modifiche"] = [next_page,page,n_pages]
-                    salva_v2(("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
+                    salva_v2(reviews,("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
                     print("  |  trovate: %2s reviews | %14s reviews | %s"%(str(temp[1]),(str(len(reviews))+" / "+str(tot_reviews)),next_page))
                     next_page = PRE_LINK_ANNUNCIO+str(pages[len(pages)-1].get('href'))
                     if(page%MAX_PAGES==0):
@@ -72,7 +72,7 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
                 temp = estrai_dati(div_reviews, reviews["contenuto"],PRE_LINK_ANNUNCIO)
                 reviews["contenuto"] = temp[0]
                 reviews["modifiche"] = [next_page,page,n_pages]
-                salva_v2(("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
+                salva_v2(reviews,("reviews_"+nome_negozio+"_trustpilot"),"../files_web_scraping/Reviews_dato_grezzo/")
                 print("  |  trovate: %2s reviews | %14s reviews | %s"%(str(temp[1]),(str(len(reviews))+" / "+str(tot_reviews)),LINK))
             no_problem = True
             return reviews
