@@ -31,6 +31,8 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
     no_problem = False
     USCITA = 0
 
+    print("contenuto: ",reviews["contenuto"])
+
     while no_problem is False:
         try :
             soup = vai_a_page(LINK,sec_pausa_errore)
@@ -80,5 +82,5 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
             print("\n\t\tUSCITA",USCITA)
             time.sleep(sec_pausa_errore)
             if USCITA==tentativi:
-                sys.exit("\n\n\t\tERRORE DURANTE IL DOWNLOAD DEI DATI\n\n")
+                sys.exit("ERRORE DURANTE IL DOWNLOAD DEI DATI\n\n")
             print("\tFine pausa")
