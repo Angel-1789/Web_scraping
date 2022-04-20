@@ -7,11 +7,11 @@ from funzioni.vai_a_page import vai_a_page
 from funzioni.LEGGI_SCRIVI_DIC import *
 
 MAX_PAGES = 10
-USCITA = 0
 
 
 def estrai_dati(div_reviews, reviews,PRE_LINK_ANNUNCIO):
     conta = 0
+
     for review in div_reviews:
         if len(review)==1:
             username = review.find('aside').find('a').find('div',class_='typography_typography__QgicV typography_bodysmall__irytL typography_weight-medium__UNMDK typography_fontstyle-normal__kHyN3 styles_consumerName__dP8Um').get_text()
@@ -29,6 +29,7 @@ def estrai_dati(div_reviews, reviews,PRE_LINK_ANNUNCIO):
 
 def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore, tentativi, reviews, nome_negozio):
     no_problem = False
+    USCITA = 0
 
     while no_problem is False:
         try :
@@ -74,10 +75,10 @@ def estrai_reviews(LINK,PRE_LINK_ANNUNCIO, last_page, sec_pages,sec_pausa_errore
             no_problem = True
             return reviews
         except Exception as err:
-            print("\nerrore durante il download delle reviews.\n%s\n\tSi riprovera il download della pagina tra %s secondi."%(sec_pausa_errore,err),end='')
-            time.sleep(sec_pausa_errore)
+            print("\nerrore durante il download delle reviews: %s\n\tSi riprovera il download della pagina tra %s secondi."%(err,sec_pausa_errore),end='')
             USCITA += 1
-            print("\n\t\tusccita",USCITA)
+            print("\n\t\tUSCITA",USCITA)
+            time.sleep(sec_pausa_errore)
             if USCITA==tentativi:
                 sys.exit("\n\n\t\tERRORE DURANTE IL DOWNLOAD DEI DATI\n\n")
             print("\tFine pausa")
