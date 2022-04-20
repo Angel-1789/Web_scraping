@@ -42,7 +42,7 @@ else:
     sys.exit("Pasare come parametro (solo 1) il nome del negozio dal quale si vogliono scaricare le reviews da Trustpilot")
 
 # --------------------------- SCARICA REVIEWS
-reviews_negozio = {}
+reviews_negozio = {"contenuto":{},"modifiche":["","",""] }
 
 print("\nREVIEWS -- %s -- Trustpilot\n"%(sys.argv[1]))
 try:
