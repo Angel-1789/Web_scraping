@@ -3,7 +3,6 @@ import requests # libreria standard di Python per accedere ai siti web, tramitte
 import webbrowser # ci da la possibilità di aprire automaticamente il sito web su un browser a piacere
 import time
 from funzioni.vai_a_page import vai_a_page
-from funzioni.Reviews import estrai_reviews
 from funzioni.LEGGI_SCRIVI_DIC import salva_dic
     
 def estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, page_link,page_attuale, tot_page):
@@ -60,11 +59,11 @@ def estrai_aziende(LINK, PRE_LINK_ANNUNCIO, sec, sec_pausa_errore,tentativi):
                         pages = soup.find('div',class_='styles_categoryBusinessBody__3fm2a').find('nav').find_all('a')
                         n_page = int(soup.find('div',class_='styles_categoryBusinessBody__3fm2a').find('nav').find('a',class_='link_internal__YpiJI link_disabled__2Q9Ub button_button__3sN8k button_medium__252Ld button_primary__2eJ8_ link_button__13BH6 pagination-link_current__2H33l pagination-link_item__1wvr8').get_text())
                         div_aziende = soup.find('div', class_ = 'styles_businessUnitCardsContainer__1ggaO')
-                        print("FOR: ",div_aziende)
+                        #print("FOR: ",div_aziende)
 
                         if div_aziende is not None:
-                          div_aziende = div_aziende.find_all('div',class_='paper_paper__29o4A card_card__2F_07 card_noPadding__1tkWv styles_wrapper__2QC-c styles_businessUnitCard__1-z5m')
-                          aziende = estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, next_page,n_page,n_pages)
+                            div_aziende = div_aziende.find_all('div',class_='paper_paper__29o4A card_card__2F_07 card_noPadding__1tkWv styles_wrapper__2QC-c styles_businessUnitCard__1-z5m')
+                            aziende = estrai_dati(div_aziende, aziende,PRE_LINK_ANNUNCIO,sec,sec_pausa_errore, next_page,n_page,n_pages)
 
                         next_page = PRE_LINK_ANNUNCIO+str(pages[len(pages)-1].get('href'))
                         if(page%10==0):
@@ -92,7 +91,7 @@ def estrai_negozi_sottocategorie(categorie, PRE_LINK_ANNUNCIO,sec_categoria, sec
             print('\033[1m'+"Categoria: ",categoria,"\n")
             sottocategorie = categorie[categoria]
             for sottocategoria in sottocategorie:
-                print('\033[1m'+"\tSottocategoria:",sottocategoria[0],"\tlink:",sottocategoria[1])
+                print('\033[1m'+"\n\tSottocategoria:",sottocategoria[0],"\tlink:",sottocategoria[1])
                 controllo = estrai_aziende(sottocategoria[1],PRE_LINK_ANNUNCIO,sec_pages,sec_pausa_errore,tentativi)
 
                 temp_sottocategoria = str(categoria)+";"+str(sottocategoria[0])
